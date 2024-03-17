@@ -1,0 +1,8 @@
+.gallery {
+  display: flex;
+  padding: 100px 156px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 48px;
+}
