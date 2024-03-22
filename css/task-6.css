@@ -1,0 +1,10 @@
+#boxes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#boxes div {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+}
