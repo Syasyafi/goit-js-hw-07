@@ -26,17 +26,12 @@ const images = [
 ];
 
 const galleryList = document.querySelector('.gallery');
-
-images.forEach(img => {
-  const listItem = document.createElement('li');
-  const imgElement = document.createElement('img');
-
-  imgElement.src = img.url;
-  imgElement.alt = img.alt;
-
-  listItem.appendChild(imgElement);
-
-  galleryList.appendChild(listItem);
-
-  console.log(galleryList);
-});
+const createGallery = images
+  .map(({ url, alt }) => {
+    return `
+  <li>
+  <img src="${url}" alt="${alt}" width = 360 height = 300>
+  </li>`;
+  })
+  .join('');
+galleryList.insertAdjacentHTML('beforeend', createGallery);

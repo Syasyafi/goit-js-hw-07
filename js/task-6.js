@@ -6,18 +6,23 @@ function getRandomHexColor() {
 
 function createBoxes(amount) {
   const boxesContainer = document.getElementById('boxes');
+  destroyBoxes(); // Очищення попередніх квадратів перед створенням нових
   for (let i = 0; i < amount; i++) {
     const box = document.createElement('div');
-    box.style.width = `${30 + i * 10}px`;
-    box.style.height = `${30 + i * 10}px`;
+    box.style.width = `${sizes}px`;
+    box.style.height = `${sizes}px`;
     box.style.backgroundColor = getRandomHexColor();
     boxesContainer.appendChild(box);
+    sizes += 10;
   }
 }
 
 function destroyBoxes() {
   const boxesContainer = document.getElementById('boxes');
-  boxesContainer.innerHTML = '';
+  // Очищення попередніх квадратів шляхом видалення їх дочірніх елементів
+  while (boxesContainer.firstChild) {
+    boxesContainer.removeChild(boxesContainer.firstChild);
+  }
 }
 
 document.querySelector('button[data-create]').addEventListener('click', () => {
