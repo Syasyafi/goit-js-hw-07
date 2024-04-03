@@ -1,3 +1,5 @@
+let sizes = 30;
+
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
@@ -6,7 +8,7 @@ function getRandomHexColor() {
 
 function createBoxes(amount) {
   const boxesContainer = document.getElementById('boxes');
-  destroyBoxes(); // Очищення попередніх квадратів перед створенням нових
+  destroyBoxes();
   for (let i = 0; i < amount; i++) {
     const box = document.createElement('div');
     box.style.width = `${sizes}px`;
@@ -19,22 +21,31 @@ function createBoxes(amount) {
 
 function destroyBoxes() {
   const boxesContainer = document.getElementById('boxes');
-  // Очищення попередніх квадратів шляхом видалення їх дочірніх елементів
+
   while (boxesContainer.firstChild) {
     boxesContainer.removeChild(boxesContainer.firstChild);
   }
 }
 
-document.querySelector('button[data-create]').addEventListener('click', () => {
-  const inputVal = parseInt(document.querySelector('input').value);
+const createButton = document.querySelector('button[data-create]');
+const destroyButton = document.querySelector('button[data-destroy]');
+const input = document.querySelector('input');
+
+createButton.addEventListener('click', () => {
+  const inputVal = parseInt(input.value);
   if (inputVal >= 1 && inputVal <= 100) {
     createBoxes(inputVal);
-    document.querySelector('input').value = '';
+    input.value = '';
   } else {
-    alert('Please enter a number between 1 and 100.');
+    const errorMessage = document.createElement('p');
+    errorMessage.textContent = 'Please enter a number between 1 and 100.';
+    document.body.appendChild(errorMessage);
+    setTimeout(() => {
+      errorMessage.remove();
+    }, 3000);
   }
 });
 
-document.querySelector('button[data-destroy]').addEventListener('click', () => {
+destroyButton.addEventListener('click', () => {
   destroyBoxes();
 });
