@@ -1,5 +1,3 @@
-let sizes = 30;
-
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
@@ -7,21 +5,21 @@ function getRandomHexColor() {
 }
 
 function createBoxes(amount) {
+  let boxSize = 30; // Локальна змінна для розміру кожного боксу
   const boxesContainer = document.getElementById('boxes');
   destroyBoxes();
   for (let i = 0; i < amount; i++) {
     const box = document.createElement('div');
-    box.style.width = `${sizes}px`;
-    box.style.height = `${sizes}px`;
+    box.style.width = `${boxSize}px`;
+    box.style.height = `${boxSize}px`;
     box.style.backgroundColor = getRandomHexColor();
     boxesContainer.appendChild(box);
-    sizes += 10;
+    boxSize += 10; // Збільшення розміру для наступного квадрата
   }
 }
 
 function destroyBoxes() {
   const boxesContainer = document.getElementById('boxes');
-
   while (boxesContainer.firstChild) {
     boxesContainer.removeChild(boxesContainer.firstChild);
   }
