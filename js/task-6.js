@@ -5,24 +5,25 @@ function getRandomHexColor() {
 }
 
 function createBoxes(amount) {
-  let boxSize = 30; // Локальна змінна для розміру кожного боксу
+  const boxSize = 30;
   const boxesContainer = document.getElementById('boxes');
-  destroyBoxes();
+  const boxes = [];
+
   for (let i = 0; i < amount; i++) {
     const box = document.createElement('div');
     box.style.width = `${boxSize}px`;
     box.style.height = `${boxSize}px`;
     box.style.backgroundColor = getRandomHexColor();
-    boxesContainer.appendChild(box);
-    boxSize += 10; // Збільшення розміру для наступного квадрата
+    boxes.push(box);
   }
+
+  boxesContainer.append(...boxes);
 }
 
 function destroyBoxes() {
   const boxesContainer = document.getElementById('boxes');
-  while (boxesContainer.firstChild) {
-    boxesContainer.removeChild(boxesContainer.firstChild);
-  }
+
+  boxesContainer.innerHTML = '';
 }
 
 const createButton = document.querySelector('button[data-create]');
