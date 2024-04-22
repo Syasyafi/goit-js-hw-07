@@ -7,12 +7,17 @@ function getRandomHexColor() {
 function createBoxes(amount) {
   const boxSize = 30;
   const boxesContainer = document.getElementById('boxes');
+
+  // Очищення попередніх боксів
+  boxesContainer.innerHTML = '';
+
   const boxes = [];
 
   for (let i = 0; i < amount; i++) {
     const box = document.createElement('div');
-    box.style.width = `${boxSize}px`;
-    box.style.height = `${boxSize}px`;
+    const size = boxSize + i * 10;
+    box.style.width = `${size}px`;
+    box.style.height = `${size}px`;
     box.style.backgroundColor = getRandomHexColor();
     boxes.push(box);
   }
@@ -22,7 +27,6 @@ function createBoxes(amount) {
 
 function destroyBoxes() {
   const boxesContainer = document.getElementById('boxes');
-
   boxesContainer.innerHTML = '';
 }
 
